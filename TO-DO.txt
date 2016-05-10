@@ -1,1 +1,14 @@
 TO-DO list
+
+1st PART:
+
+- HTML pages:
+  * Login DONE ->login.html
+  * Welcome page + menu ->index.html
+  * Search movie + gallery -> movie.html
+  * Watch movie -> watch.html
+  * Admin add/delete/update users -> admin_user.html
+  * Admin add/delete/update movies ->admin_movie.html
+- CSS 
+- Use Bootstrap + Javascript
+- MySQL Database
