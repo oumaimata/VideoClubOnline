@@ -2,9 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> Bienvenido <span th:text=${user.nombre} ></span></title>
 </head>
 <body>
-
+<!--<nav class="navbar navbar-default navbarColor">
+  	<div class="container-fluid col-md-offset-2 col-md-8"> -->
+    	<ul>
+     		<li> <a th:href="@{/profile}">Profile</a> </li>
+      		<li> <a href="@{/movie}">Movies Gallery</a> </li>
+      		<li>
+      			<form th:action="@{/search}" method="post">
+					<label>Search movie :</label> <input type="text" name="nombre" placeholder="Enter a movie name"/> <br />
+					<input type="submit" value="Search" /> <br />
+				</form>
+			</li>
+      		<!--<li> <a href="#">Références</a> </li>-->
+    	</ul>
+<!--	</div>
+</nav> -->
 </body>
 </html>
