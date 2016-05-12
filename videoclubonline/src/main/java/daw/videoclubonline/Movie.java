@@ -3,8 +3,8 @@ package daw.videoclubonline;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-public class Film {
+@Entity(name = "pelicula")
+public class Movie {
 
 	@Id
 	private String nombre;
@@ -16,11 +16,11 @@ public class Film {
 	private String portada;
 	private String valoracion;
 
-	public Film() {
+	public Movie() {
 
 	}
 
-	public Film(String nombre, String url, String descripcion, String ano, String director, String actores,
+	public Movie(String nombre, String url, String descripcion, String ano, String director, String actores,
 			String portada, String valoracion) {
 		super();
 		this.nombre = nombre;

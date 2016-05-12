@@ -1,9 +1,15 @@
 package daw.videoclubonline;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+@Entity(name = "usuario")
 public class User {
 
 	@Id
@@ -44,6 +50,25 @@ public class User {
 
 	public void setCorreo(String correo) {
 		this.correo = correo;
+	}
+
+	/**
+	 * Returns the roles of the user depending on his username.
+	 * 
+	 * @return list of roles
+	 */
+	public List<GrantedAuthority> getRoles() {
+		GrantedAuthority[] roles;
+
+		if (nombre.equals("root"))
+			// return ROLE_USER and ROLE_ADMIN for user root
+			roles = new GrantedAuthority[] { new SimpleGrantedAuthority("ROLE_USER"),
+					new SimpleGrantedAuthority("ROLE_ADMIN") };
+		else
+			// return ROLE_USER for all other users
+			roles = new GrantedAuthority[] { new SimpleGrantedAuthority("ROLE_USER") };
+
+		return Arrays.asList(roles);
 	}
 
 }
