@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Bienvenido</title>
+	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+	<meta charset="UTF-8"></meta>
+	<title>Bienvenido</title>
 </head>
 <body>
 	<h1>
 		Bienvenido <span th:text="${user.nombre}"></span>
 	</h1>
-	<!--<nav class="navbar navbar-default navbarColor">
-  	<div class="container-fluid col-md-offset-2 col-md-8"> -->
+	<nav class="navbar navbar-default navbarColor">
+  	<div class="container-fluid col-md-offset-2 col-md-8">
 	<ul>
 		<li><a th:href="@{/profile}">Profile</a></li>
 		<li><a th:href="@{/movie}">Movies Gallery</a></li>
@@ -20,9 +22,8 @@
 					value="Search" /> <br />
 			</form>
 		</li>
-		<!--<li> <a href="#">Références</a> </li>-->
 	</ul>
-	<!--	</div>
-</nav> -->
+	</div>
+</nav>
 </body>
 </html>

@@ -1,10 +1,140 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"></meta>
-<title>Insert title here</title>
+	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+	<meta charset="UTF-8"></meta>
+	<title>Gestion users</title>
 </head>
 <body>
+
+	    <div class="container">
+        <div id="alertChoixType"class="alert btn-primary alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+          <button type="button" class="close" id="closeChooseUser">×</button>
+        <form method="post" action="@{/user}">
+          <h3 class="panel-title">Eligir User </h3>
+          <div class="form-group">
+            <select name="type"class="selectpicker form-control">
+
+            	<option th:each="user,it : ${users}"></option>
+				<option th:text="${user.nombre}"></option>
+				<option th:text="${user.apellido}"></option>
+          
+            </select>
+            </div>  
+      <div class="form-group">  
+              <button type="submit" class="btn btn-primary form-control"> Search</button>
+          </div>  
+        </form> 
+        </div>
+    </div>
+
+
+    <!-- /////add user/////-->
+    <div id="alertAjoutPark" class="alert btn-success alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+          <button type="button" class="close" id="closeAddUser">x</button>
+	    <form th:action="@{/user}" method="post">
+			<input type="text" name="nombre" class="form-control"/> <br />
+			<input type="text" name="apellido" class="form-control"/><br />
+			<input type="submit" class="btn btn-primary form-control" value="Add" /> <br />
+		</form>
+	</div>
+
+	<div class="col-md-offset-2 col-md-8"> 
+       		<div class="btn-group btn-group-justified" role="group"> 
+        		<div class="btn-group"  role="group">
+        			<button type="submit" class="btn btn-success" id="addUser">
+        		    	<span class="glyphicon glyphicon-ok"></span>&nbsp;Add User
+          		  	</button>                                                                        
+     	 		</div>
+     	 		<div class="btn-group"  role="group">
+         			<button type="button" class="btn btn-info" id="modifUser">
+            			<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modify User
+          			</button>
+        		</div>
+     	 		<div class="btn-group"  role="group">
+          			<button type="submit" class="btn btn-danger" id="delUser">
+            			<span class="glyphicon glyphicon-remove"></span>&nbsp;Delete User
+          			</button>
+        		</div>
+    		</div>
+      </div>
+
+
+    <script src="bootstrap/js/jquery.js"></script> 
+    <!--SCRIPTS FONCTiONNELS POUR TOUS LES BOUTONS DE LA PAGE-->
+    <script>  
+        $(function (){
+          $("#showChooseUser").click(function() {
+              $("#showChooseUser").hide();
+              $("#delUser").hide();
+              $("#addUser").hide();
+              $("#modifUser").hide();
+              $("#alertChooseUser").show("slow");
+          }); 
+          $("#closeChooseUser").click(function() {
+              $("#alertChooseUser").hide("slow");
+              $("#showChooseUser").show();
+              $("#delUser").show();
+              $("#addUser").show();
+              $("#modifUser").show();
+          }); 
+        }); 
+    </script>   
+    <script>  
+        $(function (){
+          $("#delUser").click(function() {
+              $("#delUser").hide();
+              $("#addUser").hide();
+              $("#showChooseUser").hide();
+              $("#modifUser").hide();
+              $("#alertDelUser").show("slow");
+          }); 
+          $("#closeDelUser").click(function() {
+              $("#alertDelUser").hide("slow");
+              $("#delUser").show();
+              $("#addUser").show();
+              $("#showChooseUser").show();
+          $("#modifUser").show();
+          }); 
+        }); 
+    </script> 
+    <script>  
+        $(function (){
+          $("#addUser").click(function() {
+              $("#addUser").hide();
+              $("#delUser").hide();
+              $("#showChooseUser").hide();
+              $("#modifUser").hide();
+              $("#alertAjoutUser").show("slow");
+          }); 
+          $("#closeAddUser").click(function() {
+              $("#alertAddUser").hide("slow");
+              $("#addUser").show();
+              $("#delUser").show();
+              $("#showChooseUser").show();
+              $("#modifUser").show();
+          }); 
+        }); 
+    </script>
+    <script>  
+        $(function (){
+          $("#modifUser").click(function() {
+              $("#addUser").hide();
+              $("#delUser").hide();
+              $("#showChooseUser").hide();
+              $("#modifUser").hide();
+              $("#alertModifUser").show("slow");
+          }); 
+          $("#closeModifUser").click(function() {
+              $("#alertModifUser").hide("slow");
+              $("#addUser").show();
+              $("#delUser").show();
+              $("#showChooseUser").show();
+              $("#modifUser").show();
+          }); 
+        }); 
+    </script>
 
 </body>
 </html>
