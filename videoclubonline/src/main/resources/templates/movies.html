@@ -2,44 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	rel="stylesheet" type="text/css" />
 <title>Found movies</title>
-<!-- temporary style -->
-	<style>
-	td {
-		border: solid 1px black;
-	}
-	tr {
-		margin: 0px 20px;
-	}
-	</style>
 </head>
 <body>
+	<div class="container-fluid">
+		<table id="movie-table" class="table table-striped">
+			<tr>
+				<th></th>
+				<!-- for url -->
+				<th></th>
+				<!-- for "portada" -->
+				<th>Nombre</th>
+				<th>Descripci&#243;n</th>
+				<th>A&#241;o</th>
+				<th>Director</th>
+				<th>Actores</th>
+				<th>Valoraci&#243;n</th>
+			</tr>
+			<!-- loop through the movies -->
+			<tr th:each="movie,it : ${movies}" class="table-row-movie">
+				<td><a class="btn btn-default"
+					th:href="@{/watch(nombre=${movie.nombre})}">Watch</a></td>
+				<td><img class="table-image" th:src="${movie.portada}"></img></td>
+				<td th:text="${movie.nombre}"></td>
+				<td><div class="table-description"
+						th:text="${movie.descripcion}"></div></td>
+				<td th:text="${movie.ano}"></td>
+				<td th:text="${movie.director}"></td>
+				<td th:text="${movie.actores}"></td>
+				<td th:text="${movie.valoracion}"></td>
+			</tr>
+		</table>
+	</div>
 
-	<table>
-		<tr>
-			<th></th>
-			<!-- for url -->
-			<th></th>
-			<!-- for "portada" -->
-			<th>Nombre</th>
-			<th>Descripci&#243;n</th>
-			<th>A&#241;o</th>
-			<th>Director</th>
-			<th>Actores</th>
-			<th>Valoraci&#243;n</th>
-		</tr>
-		<!-- loop through the movies -->
-		<tr th:each="movie,it : ${movies}">
-			<td><a th:href="@{/watch(nombre=${movie.nombre})}">Watch</a></td>
-			<td><img th:src="${movie.portada}" width="100" height="100"></img></td>
-			<td th:text="${movie.nombre}"></td>
-			<td style="overflow:hidden; width:300px; height:100px;" th:text="${movie.descripcion}"></td>
-			<td th:text="${movie.ano}"></td>
-			<td th:text="${movie.director}"></td>
-			<td th:text="${movie.actores}"></td>
-			<td th:text="${movie.valoracion}"></td>
-		</tr>
-	</table>
-	
+	<div class="container">
+		<form role="form" th:action="@{/logout}" method="post">
+			<input class="btn btn-default" type="submit" value="Sign Out" />
+		</form>
+	</div>
 </body>
 </html>

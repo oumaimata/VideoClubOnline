@@ -97,4 +97,13 @@ public class Movie {
 		this.valoracion = valoracion;
 	}
 
+	@Override
+	public String toString() {
+		return "Movie [nombre=" + nombre + ", url=" + url + ", descripcion=" + descripcion + ", ano=" + ano
+				+ ", director=" + director + ", actores=" + actores + ", portada=" + portada + ", valoracion="
+				+ valoracion + "]";
+	}
+	
+	
+
 }

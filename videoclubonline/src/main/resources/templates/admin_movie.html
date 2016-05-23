@@ -2,9 +2,239 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
-<title>Insert title here</title>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	rel="stylesheet" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<title>Administrar pel&#237;culas</title>
 </head>
 <body>
+	<nav class="navbar navbar-default navbarColor">
+		<div class="container-fluid col-md-offset-2 col-md-8">
+			<ul>
+				<li><a th:href="@{/}">P&#225;gina principal</a></li>
+				<li><a th:href="@{/admin_movie(add)}">A&#241;adir nueva
+						pel&#237;cula</a></li>
+				<li><a th:href="@{/admin_movie(modify)}">Modificar
+						pel&#237;cula</a></li>
+				<li><a th:href="@{/admin_movie(delete)}">Borrar
+						pel&#237;cula</a></li>
+			</ul>
+		</div>
+	</nav>
 
+
+	<div class="page-header">
+		<h1>Administraci&#243;n de pel&#237;culas</h1>
+	</div>
+
+	<div class="container">
+		<!-- ___________________________________________________________ADD NEW MOVIE_____________________________________________________________________________________ -->
+		<div th:if="${param.add}">
+			<h2>A&#241;adir nueva pel&#237;cula</h2>
+
+			<form role="form" id="add_form" th:action="@{/new_movie}"
+				method="post">
+				<!-- Movie name -->
+				<div class="form-group">
+					<label for="nombre">Nombre de pel&#237;cula:</label> <input
+						id="nombre_new_movie" class="form-control" type="text"
+						name="nombre" />
+				</div>
+				<!-- URL -->
+				<div class="form-group">
+					<label for="nombre">URL:</label> <input id="url_new_movie"
+						class="form-control" type="text" name="url" />
+				</div>
+				<!-- Descripcion -->
+				<div class="form-group">
+					<label for="nombre">Descripci&#243;n:</label>
+					<textarea class="form-control" type="text" name="descripcion" />
+				</div>
+				<!-- Año -->
+				<div class="form-group">
+					<label for="nombre">A&#241;o:</label> <input class="form-control"
+						type="text" name="ano" />
+				</div>
+				<!-- Director -->
+				<div class="form-group">
+					<label for="nombre">Director:</label> <input class="form-control"
+						type="text" name="director" />
+				</div>
+				<!-- Actores -->
+				<div class="form-group">
+					<label for="nombre">Actores:</label>
+					<textarea class="form-control" type="text" name="actores" />
+				</div>
+				<!-- Portada -->
+				<div class="form-group">
+					<label for="nombre">URL de foto de portada:</label> <input
+						class="form-control" type="text" name="portada" />
+				</div>
+				<!-- Valoracion -->
+				<div class="form-group">
+					<label for="nombre">Valoraci&#243;n:</label> <input
+						class="form-control" type="text" name="valoracion" />
+				</div>
+				<input type="submit" value="Enviar" class="btn btn-default" />
+			</form>
+		</div>
+
+		<!-- ______________________________________________________________MODIFY EXISTING MOVIE_____________________________________________________________________________________ -->
+		<div th:if="${param.modify} or ${modify}">
+			<h2>Modificar pel&#237;cula</h2>
+
+			<div class="container">
+				<!-- Search for video to modify (only showing if movie_to_modify not set -->
+				<form th:if="${movie == null}" role="form"
+					th:action="@{/search_movie_to_modify}" method="post">
+					<div class="form-group">
+						<label for="movie">Buscar pel&#237;cula:</label> <input
+							class="form-control" type="text" name="nombre"
+							placeholder="Enter a movie name" /> <input
+							class="btn btn-default" type="submit" value="Buscar" />
+					</div>
+				</form>
+
+				<!-- Show list of searched videos to modify -->
+				<div th:each="movie,it : ${movies}">
+					<a class="black"
+						th:href="@{/movie_to_modify(movie_to_modify=${movie.nombre})}">Modificar
+						<span th:text="${movie.nombre}"></span>
+					</a>
+				</div>
+
+				<!-- Show form to modify selected video -->
+				<div th:if="${movie}">
+					<form role="form" id="modify_form" th:action="@{/modify_movie}"
+						method="post">
+						<!-- Movie name -->
+						<div class="form-group">
+							<label for="nombre">Nombre de pel&#237;cula:</label> <input
+								id="nombre_modified_movie" class="form-control" type="text"
+								name="nombre" th:value="${movie.nombre}" />
+						</div>
+						<!-- URL -->
+						<div class="form-group">
+							<label for="url">URL:</label> <input id="url_modified_movie"
+								class="form-control" type="text" name="url"
+								th:value="${movie.url}" />
+						</div>
+						<!-- Descripcion -->
+						<div class="form-group">
+							<label for="descripcion">Descripci&#243;n:</label>
+							<textarea class="form-control" type="text" name="descripcion"
+								th:text="${movie.descripcion}" />
+						</div>
+						<!-- Año -->
+						<div class="form-group">
+							<label for="ano">A&#241;o:</label> <input class="form-control"
+								type="text" name="ano" th:value="${movie.ano}" />
+						</div>
+						<!-- Director -->
+						<div class="form-group">
+							<label for="director">Director:</label> <input
+								class="form-control" type="text" name="director"
+								th:value="${movie.director}" />
+						</div>
+						<!-- Actores -->
+						<div class="form-group">
+							<label for="actores">Actores:</label>
+							<textarea class="form-control" type="text" name="actores"
+								th:text="${movie.actores}" />
+						</div>
+						<!-- Portada -->
+						<div class="form-group">
+							<label for="portada">URL de foto de portada:</label> <input
+								class="form-control" type="text" name="portada"
+								th:value="${movie.portada}" />
+						</div>
+						<!-- Valoracion -->
+						<div class="form-group">
+							<label for="valoracion">Valoraci&#243;n:</label> <input
+								class="form-control" type="text" name="valoracion"
+								th:value="${movie.valoracion}" />
+						</div>
+						<input type="submit" value="Enviar" class="btn btn-default" />
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- _______________________________________________________________________DELETE EXISTING MOVIE_____________________________________________________________________________________ -->
+		<div th:if="${param.delete} or ${delete}">
+			<h2>Borrar pel&#237;cula</h2>
+			<div class="container">
+				<!-- Search for video to modify (only showing if movie_to_modify not set -->
+				<form th:if="${movie == null}" role="form"
+					th:action="@{/search_movie_to_delete}" method="post">
+					<div class="form-group">
+						<label for="movie">Buscar pel&#237;cula:</label> <input
+							class="form-control" type="text" name="nombre"
+							placeholder="Enter a movie name" /> <input
+							class="btn btn-default" type="submit" value="Buscar" />
+					</div>
+				</form>
+
+				<!-- Show list of searched videos to modify -->
+				<div th:each="movie,it : ${movies}">
+					<a class="black" th:href="@{/delete_movie(nombre=${movie.nombre})}">Borrar
+						<span th:text="${movie.nombre}"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- _________________________________________________________________STATUS (add,modify,delete)______________________________________________________________________________ -->
+		<!-- Movie added successfully -->
+		<div th:if="${addedmovie}" class="alert alert-success">
+			<strong th:text="${addedmovie.nombre}"></strong> a&#241;adido con
+			&#233;xito!
+		</div>
+		<!-- Movie modified successfully -->
+		<div th:if="${modifiedmovie}" class="alert alert-success">
+			<strong th:text="${modifiedmovie.nombre}"></strong> ha sido
+			modificado con &#233;xito!
+		</div>
+		<!-- Movie deleted successfully -->
+		<div th:if="${deletedmovie}" class="alert alert-success">
+			<strong th:text="${deletedmovie}"></strong> ha sido borrado con
+			&#233;xito!
+		</div>
+	</div>
+
+
+	<script>
+		$(document).ready(function() {
+			$("#add_form").submit(function() {
+				console.log("add submitted!");
+				if ($("#nombre_new_movie").val() == '') {
+					alert("Nombre no puede estar vacío!");
+					return false;
+				}
+				if ($("#url_new_movie").val() == '') {
+					alert("URL no puede estar vacía!");
+					return false;
+				}
+				return true;
+			});
+			$("#modify_form").submit(function() {
+				console.log("modify submitted!");
+				if ($("#nombre_modified_movie").val() == '') {
+					alert("Nombre no puede estar vacío!");
+					return false;
+				}
+				if ($("#url_modified_movie").val() == '') {
+					alert("URL no puede estar vacía!");
+					return false;
+				}
+				return true;
+			});
+		});
+	</script>
 </body>
 </html>

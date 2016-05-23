@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-	<meta charset="UTF-8"></meta>
-	<title>Login</title>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	rel="stylesheet" type="text/css" />
+<meta charset="UTF-8"></meta>
+<title>Login</title>
 </head>
 <body>
-	<h1>Login...</h1>
+	<div class="page-header">
+		<h1>Login</h1>
+	</div>
 
-	<p th:if="${param.error}">Invalid credentials</p>
-	<p th:if="${param.logout}">Logged out</p>
 
-	<form th:action="@{/login}" method="post">
-		<label>User Name:</label> <input type="text" name="username" /> <br />
-		<label>Password:</label> <input type="password" name="password" /><br />
-		<input type="submit" value="Sign In" /> <br />
-	</form>
+	<div class="container">
+
+		<form role="form" th:action="@{/login}" method="post">
+			<div class="form-group">
+				<label for="username">Nombre de usuario:</label> <input
+					class="form-control" type="text" name="username" />
+			</div>
+			<div class="form-group">
+				<label for="pwd">Contrase&#241;a:</label> <input
+					class="form-control" type="password" name="password" />
+			</div>
+			<input type="submit" value="Sign In" class="btn btn-default" />
+		</form>
+	</div>
+
+	<div class="container">
+		<div th:if="${param.error}" class="alert alert-danger fade in">
+			<strong>Contrase&#241;a o nombre de usuario incorrecto!</strong> <br />Intenta
+			otra vez...
+		</div>
+		<div th:if="${param.logout}" class="alert alert-info fade in">
+			Logged out</div>
+	</div>
 
 </body>
 </html>

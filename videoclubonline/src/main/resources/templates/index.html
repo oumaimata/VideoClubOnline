@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-	<meta charset="UTF-8"></meta>
-	<title>Bienvenido</title>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	rel="stylesheet" type="text/css" />
+<meta charset="UTF-8"></meta>
+<title>Bienvenido</title>
 </head>
 <body>
-	<h1>
-		Bienvenido <span th:text="${user.nombre}"></span>
-	</h1>
+
 	<nav class="navbar navbar-default navbarColor">
-  	<div class="container-fluid col-md-offset-2 col-md-8">
-	<ul>
-		<li><a th:href="@{/profile}">Profile</a></li>
-		<li><a th:href="@{/movie}">Movies Gallery</a></li>
-		<li>
-			<form th:action="@{/search}" method="post">
-				<label>Search movie :</label> <input type="text" name="nombre"
-					placeholder="Enter a movie name" /> <br /> <input type="submit"
-					value="Search" /> <br />
-			</form>
-		</li>
-	</ul>
+		<div class="container-fluid col-md-offset-2 col-md-8">
+			<ul>
+				<li><a th:href="@{/profile}">Profile</a></li>
+				<li><a th:href="@{/movie}">Movies Gallery</a></li>
+				<li><a th:href="@{/logout}">Logout</a></li>
+				<li th:if="${user.nombre} == 'root'"><a
+					th:href="@{/admin_user}">Administrar usuario</a></li>
+				<li th:if="${user.nombre} == 'root'"><a
+					th:href="@{/admin_movie}">Administrar pel&#237;cula</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="page-header">
+		<h1>
+			Bienvenido <span th:text="${user.nombre}"></span>
+		</h1>
 	</div>
-</nav>
+	<div class="container">
+		<form role="form" th:action="@{/search}" method="post">
+			<div class="form-group">
+				<label for="movie">Buscar pel&#237;cula:</label> <input
+					class="form-control" type="text" name="nombre"
+					placeholder="Enter a movie name" /> <input class="btn btn-default"
+					type="submit" value="Buscar" />
+			</div>
+		</form>
+	</div>
 </body>
 </html>

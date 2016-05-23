@@ -23,6 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.defaultSuccessUrl("/").failureUrl("/login?error").permitAll();
 
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout").permitAll();
+
 	}
 
 	@Override
