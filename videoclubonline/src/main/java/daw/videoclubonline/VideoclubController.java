@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,21 +74,27 @@ public class VideoclubController {
 	}
 
 	@RequestMapping("/admin_user")
-	public ModelAndView admun_user() {
-		// TODO
+	public ModelAndView admin_user() {
+		
 		return new ModelAndView("admin_user");
 	}
 
 	@RequestMapping("/admin_movie")
-	public ModelAndView admun_movie() {
-		// TODO
+	public ModelAndView admin_movie() {
+		
 		return new ModelAndView("admin_movie");
 	}
 
 	@RequestMapping("/movie")
 	public ModelAndView movie() {
-		// TODO
+		
 		return new ModelAndView("movie");
+	}
+	
+	@RequestMapping("/user")
+	public ModelAndView user() {
+		
+		return new ModelAndView("user");
 	}
 
 	@RequestMapping("/new_movie")
@@ -101,6 +108,18 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("addedmovie", movie);
 	}
+	
+	@RequestMapping("/new_user")
+	public ModelAndView new_user(@RequestParam String nombre, @RequestParam String contrasena,
+			@RequestParam String correo) {
+
+		// user wants to insert the movie into data base
+		String passwordHash = DigestUtils.md5DigestAsHex(contrasena.getBytes());
+		User user = new User(nombre, passwordHash, correo);
+		userRepository.save(user);
+
+		return new ModelAndView("admin_user").addObject("addeduser", user);
+	}
 
 	@RequestMapping("/search_movie_to_modify")
 	public ModelAndView search_movie_to_modify(@RequestParam String nombre) {
@@ -109,6 +128,14 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("modify", "").addObject("movies", movies);
 	}
+	
+	@RequestMapping("/search_user_to_modify")
+	public ModelAndView search_user_to_modify(@RequestParam String nombre) {
+		// Searching for user...
+		List<User> users = userRepository.findByNombreContaining(nombre);
+
+		return new ModelAndView("admin_user").addObject("modify", "").addObject("users", users);
+	}
 
 	@RequestMapping("/movie_to_modify")
 	public ModelAndView movie_to_modify(@RequestParam String movie_to_modify) {
@@ -116,6 +143,14 @@ public class VideoclubController {
 		Movie movie = movieRepository.findByNombre(movie_to_modify);
 
 		return new ModelAndView("admin_movie").addObject("modify", "").addObject("movie", movie);
+	}
+	
+	@RequestMapping("/user_to_modify")
+	public ModelAndView user_to_modify(@RequestParam String user_to_modify) {
+		// return data of the user to be modified
+		User user = userRepository.findByNombre(user_to_modify);
+
+		return new ModelAndView("admin_user").addObject("modify", "").addObject("user", user);
 	}
 
 	@RequestMapping("/modify_movie")
@@ -128,6 +163,16 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("modifiedmovie", movie);
 	}
+	
+	@RequestMapping("/modify_user")
+	public ModelAndView modify_user(@RequestParam String nombre, @RequestParam String contrasena,
+			@RequestParam String correo) {
+		// write changes of modified user to db
+		User user = new User(nombre, contrasena, correo);
+		userRepository.save(user);
+
+		return new ModelAndView("admin_user").addObject("modifieduser", user);
+	}
 
 	@RequestMapping("/search_movie_to_delete")
 	public ModelAndView search_movie_to_delete(@RequestParam String nombre) {
@@ -136,6 +181,14 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("delete", "").addObject("movies", movies);
 	}
+	
+	@RequestMapping("/search_user_to_delete")
+	public ModelAndView search_user_to_delete(@RequestParam String nombre) {
+		// Searching for user...
+		List<User> users = userRepository.findByNombreContaining(nombre);
+
+		return new ModelAndView("admin_user").addObject("delete", "").addObject("users", users);
+	}
 
 	@RequestMapping("/delete_movie")
 	public ModelAndView delete_movie(@RequestParam String nombre) {
@@ -143,6 +196,14 @@ public class VideoclubController {
 		movieRepository.deleteByNombre(nombre);
 
 		return new ModelAndView("admin_movie").addObject("deletedmovie", nombre);
+	}
+	
+	@RequestMapping("/delete_user")
+	public ModelAndView delete_user(@RequestParam String nombre) {
+
+		userRepository.deleteByNombre(nombre);
+
+		return new ModelAndView("admin_user").addObject("deleteduser", nombre);
 	}
 
 }

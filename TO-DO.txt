@@ -4,11 +4,18 @@ TO-DO list
 
 - HTML pages:
   * Login DONE ->login.html
-  * Welcome page + menu ->index.html
-  * Search movie + gallery -> movie.html
-  * Watch movie -> watch.html
-  * Admin add/delete/update users -> admin_user.html
-  * Admin add/delete/update movies ->admin_movie.html
-- CSS 
-- Use Bootstrap + Javascript
-- MySQL Database
+  * Welcome page + menu ->index.html DONE
+  * Search movie -> movie.html DONE
+  * Watch movie -> watch.html DONE
+  * Admin add/delete/update users -> admin_user.html  DONE
+  * Admin add/delete/update movies ->admin_movie.html DONE
+- CSS  DONE
+- Use Bootstrap + Javascript DONE
+- MySQL Database DONE
+
+
+- check if the user already exists
+- add a header 
+- add a gallery + change the design of the search page using the gallery
+- part 2
+- add a method in the Controller for user/admin roles  page 30 tema 3.4
