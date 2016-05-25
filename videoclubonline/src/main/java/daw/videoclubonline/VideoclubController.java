@@ -168,7 +168,8 @@ public class VideoclubController {
 	public ModelAndView modify_user(@RequestParam String nombre, @RequestParam String contrasena,
 			@RequestParam String correo) {
 		// write changes of modified user to db
-		User user = new User(nombre, contrasena, correo);
+		String passwordHash = DigestUtils.md5DigestAsHex(contrasena.getBytes());
+		User user = new User(nombre, passwordHash, correo);
 		userRepository.save(user);
 
 		return new ModelAndView("admin_user").addObject("modifieduser", user);
