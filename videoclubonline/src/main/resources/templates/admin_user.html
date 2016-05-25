@@ -64,7 +64,7 @@
       <div class="container">
         <!-- Search for video to modify (only showing if movie_to_modify not set -->
         <form th:if="${user == null}" role="form"
-          th:action="@{/search_movie_to_user}" method="post">
+          th:action="@{/search_user_to_modify}" method="post">
           <div class="form-group">
             <label for="user">Buscar usuario:</label> <input
               class="form-control" type="text" name="nombre"
