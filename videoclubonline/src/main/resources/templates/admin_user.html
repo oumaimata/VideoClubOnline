@@ -94,14 +94,16 @@
             <!-- Contrasena -->
             <div class="form-group">
               <label for="contrasena">Contrasena:</label> <input id="contrasena_modified_user"
-                class="form-control" type="text" name="contrasena"
-                th:value="${user.contrasena}" />
+                class="form-control" type="text" name="contrasena"/>
+                <div>
+                  <p><i> Dejarlo vacío para mantener la contraseña original </i></p>
+                </div>
             </div>
             <!-- Correo -->
             <div class="form-group">
               <label for="correo">Correo:</label>
               <input id="correo_modified_user" class="form-control" type="text" name="correo"
-                th:text="${user.correo}" />
+                th:value="${user.correo}" />
             </div>
             <input type="submit" value="Enviar" class="btn btn-default" />
           </form>
