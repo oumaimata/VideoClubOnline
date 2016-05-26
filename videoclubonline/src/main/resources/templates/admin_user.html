@@ -29,7 +29,7 @@
 		</div>
 	</div>
 
-	<!--
+  <!--
   <nav class="navbar navbar-default navbarColor">
     <div class="container-fluid col-md-offset-2 col-md-8">
       <ul>
@@ -52,22 +52,20 @@
 	<div class="col-md-offset-2 col-md-8">
 		<div class="btn-group btn-group-justified" role="group">
 			<div class="btn-group" role="group">
-				<button type="submit" class="btn btn-success" id="ajoutPark">
-					<span th:href="@{/admin_user(add)}" class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir
+				<a th:href="@{/admin_user(add)}" class="btn btn-success">
+					<span class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir
 					nuevo usuario
-				</button>
+				</a>
 			</div>
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-info" id="modifPark">
-					<span th:href="@{/admin_user(modify)}"
-						class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar usuario
-				</button>
+				<a th:href="@{/admin_user(modify)}" class="btn btn-info">
+					<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar usuario
+				</a>
 			</div>
 			<div class="btn-group" role="group">
-				<button type="submit" class="btn btn-danger" id="supprPark">
-					<span th:href="@{/admin_user(delete)}"
-						class="glyphicon glyphicon-remove"></span>&nbsp;Borrar usuario
-				</button>
+				<a th:href="@{/admin_user(delete)}" class="btn btn-danger">
+					<span class="glyphicon glyphicon-remove"></span>&nbsp;Borrar usuario
+				</a>
 			</div>
 		</div>
 	</div>
@@ -205,7 +203,7 @@
 	<div id="footer">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 colorwhite">Made with HTML, CSS, PHP,
+				<div class="col-md-12 colorwhite">Made with HTML, CSS,
 					Bootstrap and other tools... ;-).</div>
 			</div>
 		</div>
