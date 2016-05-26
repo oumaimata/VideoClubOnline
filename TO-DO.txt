@@ -19,3 +19,8 @@ TO-DO list
 - add a gallery + change the design of the search page using the gallery
 - part 2
 - add a method in the Controller for user/admin roles  page 30 tema 3.4
+
+problems to talk about for the presentation:
+-including css
+- watching videos
+- disposition of administration modification

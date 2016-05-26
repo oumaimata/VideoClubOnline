@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-	<meta charset="UTF-8"></meta>
-	<title>Gallery</title>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet"
+  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+  rel="stylesheet" type="text/css" />
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<title>Gallery</title>
 </head>
 <body>
+
+<div id="header">
+    <div class="container">
+        <div class="row">
+          <div  class="col-md-4">
+            <a href="index.html"><h1>Videoclub</h1>
+            <p>Disfrutar películas online</p></a>
+          </div>
+          <div  class="col-md-offset-3 col-md-4">
+            <h4 class="colorwhite">Connectado con la cuenta : <span th:text="${user.nombre}"></span></h4>
+            <a th:href="@{/logout}">Cerrar Sesión</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1>Galley de películas</h1>
+</div>
+
+
+ <div id="footer">
+	    <div class="container">
+	    	<div class="row">
+	    		<div  class="col-md-12 colorwhite">
+					Made with HTML, CSS, PHP, Bootstrap and other tools... ;-).
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
 
 </body>
 </html>
