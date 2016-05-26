@@ -3,31 +3,33 @@
 <head>
 <meta charset="UTF-8"></meta>
 <link rel="stylesheet"
-  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link href="../static/css/style.css" th:href="@{/css/style.css}"
-  rel="stylesheet" type="text/css" />
+	rel="stylesheet" type="text/css" />
 <script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <title>Administrar usuarios</title>
 </head>
 <body>
 
-  <div id="header">
-      <div class="container">
-        <div class="row">
-          <div  class="col-md-4">
-            <a href="index.html"><h1>Videoclub</h1>
-            <p>Disfrutar películas online</p></a>
-          </div>
-          <div  class="col-md-offset-3 col-md-4">
-            <h4 class="colorwhite">Connectado con la cuenta : <span th:text="${user.nombre}"></span></h4>
-            <a th:href="@{/logout}">Cerrar Sesión</a>
-          </div>
-        </div>
-      </div>
-  </div>
-  
-  <!--
+	<div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<a href="index.html"><h1>Videoclub</h1>
+						<p>Disfrutar películas online</p></a>
+				</div>
+				<div class="col-md-offset-3 col-md-4">
+					<h4 class="colorwhite">
+						Connectado con la cuenta : <span th:text="${username}"></span>
+					</h4>
+					<a th:href="@{/logout}">Cerrar Sesión</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--
   <nav class="navbar navbar-default navbarColor">
     <div class="container-fluid col-md-offset-2 col-md-8">
       <ul>
@@ -43,202 +45,208 @@
 -->
 
 
-  <div class="page-header">
-    <h1>Administraci&#243;n de usurios</h1>
-  </div>
+	<div class="page-header">
+		<h1>Administraci&#243;n de usurios</h1>
+	</div>
 
-  <div class="col-md-offset-2 col-md-8"> 
-    <div class="btn-group btn-group-justified" role="group"> 
-            <div class="btn-group"  role="group">
-              <button type="submit" class="btn btn-success" id="ajoutPark">
-                  <span th:href="@{/admin_user(add)}" class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir nuevo usuario
-                  </button>                                                                        
-            </div>
-            <div class="btn-group"  role="group">
-              <button type="button" class="btn btn-info" id="modifPark">
-                  <span th:href="@{/admin_user(modify)}" class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar usuario
-                </button>
-            </div>
-            <div class="btn-group"  role="group">
-                <button type="submit" class="btn btn-danger" id="supprPark">
-                  <span th:href="@{/admin_user(delete)}" class="glyphicon glyphicon-remove"></span>&nbsp;Borrar usuario
-                </button>
-            </div>
-    </div>
-  </div>
-  <br/>
+	<div class="col-md-offset-2 col-md-8">
+		<div class="btn-group btn-group-justified" role="group">
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn btn-success" id="ajoutPark">
+					<span th:href="@{/admin_user(add)}" class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir
+					nuevo usuario
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-info" id="modifPark">
+					<span th:href="@{/admin_user(modify)}"
+						class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar usuario
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn btn-danger" id="supprPark">
+					<span th:href="@{/admin_user(delete)}"
+						class="glyphicon glyphicon-remove"></span>&nbsp;Borrar usuario
+				</button>
+			</div>
+		</div>
+	</div>
+	<br />
 
-  <div class="container">
-    <!-- ___________________________________________________________ADD NEW USER_____________________________________________________________________________________ -->
-    <div th:if="${param.add}">
-      <h2>A&#241;adir nuevo usuario</h2>
+	<div class="container">
+		<!-- ___________________________________________________________ADD NEW USER_____________________________________________________________________________________ -->
+		<div th:if="${param.add}">
+			<h2>A&#241;adir nuevo usuario</h2>
 
-      <form role="form" id="add_form" th:action="@{/new_user}"
-        method="post">
-        <!-- User name -->
-        <div class="form-group">
-          <label for="nombre">Nombre de usuario:</label> <input
-            id="nombre_new_user" class="form-control" type="text"
-            name="nombre" />
-        </div>
-        <!-- Contrasena -->
-        <div class="form-group">
-          <label for="contrasena">contraseña</label> <input id="contrasena_new_user"
-            class="form-control" type="password" name="contrasena" />
-        </div>
-        <!-- Correo -->
-        <div class="form-group">
-          <label for="correo">Correo:</label>
-          <input id="correo_new_user" class="form-control" type="text" name="correo" />
-        </div>
-        <input type="submit" value="Enviar" class="btn btn-default" />
-      </form>
-    </div>
+			<form role="form" id="add_form" th:action="@{/new_user}"
+				method="post">
+				<!-- User name -->
+				<div class="form-group">
+					<label for="nombre">Nombre de usuario:</label> <input
+						id="nombre_new_user" class="form-control" type="text"
+						name="nombre" />
+				</div>
+				<!-- Contrasena -->
+				<div class="form-group">
+					<label for="contrasena">contraseña</label> <input
+						id="contrasena_new_user" class="form-control" type="password"
+						name="contrasena" />
+				</div>
+				<!-- Correo -->
+				<div class="form-group">
+					<label for="correo">Correo:</label> <input id="correo_new_user"
+						class="form-control" type="text" name="correo" />
+				</div>
+				<input type="submit" value="Enviar" class="btn btn-default" />
+			</form>
+		</div>
 
-    <!-- ______________________________________________________________MODIFY EXISTING USER_____________________________________________________________________________________ -->
-    <div th:if="${param.modify} or ${modify}">
-      <h2>Modificar usuario</h2>
+		<!-- ______________________________________________________________MODIFY EXISTING USER_____________________________________________________________________________________ -->
+		<div th:if="${param.modify} or ${modify}">
+			<h2>Modificar usuario</h2>
 
-      <div class="container">
-        <!-- Search for video to modify (only showing if movie_to_modify not set -->
-        <form th:if="${user == null}" role="form"
-          th:action="@{/search_user_to_modify}" method="post">
-          <div class="form-group">
-            <label for="user">Buscar usuario:</label> <input
-              class="form-control" type="text" name="nombre"
-              placeholder="Enter a user name" /> <input
-              class="btn btn-default" type="submit" value="Buscar" />
-          </div>
-        </form>
+			<div class="container">
+				<!-- Search for video to modify (only showing if movie_to_modify not set -->
+				<form th:if="${user == null}" role="form"
+					th:action="@{/search_user_to_modify}" method="post">
+					<div class="form-group">
+						<label for="user">Buscar usuario:</label> <input
+							class="form-control" type="text" name="nombre"
+							placeholder="Enter a user name" /> <input
+							class="btn btn-default" type="submit" value="Buscar" />
+					</div>
+				</form>
 
-        <!-- Show list of searched videos to modify -->
-        <div th:each="user,it : ${users}">
-          <a class="black"
-            th:href="@{/user_to_modify(user_to_modify=${user.nombre})}">Modificar
-            <span th:text="${user.nombre}"></span>
-          </a>
-        </div>
+				<!-- Show list of searched videos to modify -->
+				<div th:each="user,it : ${users}">
+					<a class="black"
+						th:href="@{/user_to_modify(user_to_modify=${user.nombre})}">Modificar
+						<span th:text="${user.nombre}"></span>
+					</a>
+				</div>
 
-        <!-- Show form to modify selected user -->
-        <div th:if="${user}">
-          <form role="form" id="modify_form" th:action="@{/modify_user}"
-            method="post">
-            <!-- User name -->
-            <div class="form-group">
-              <label for="nombre">Nombre del usuario:</label> <input
-                id="nombre_modified_user" class="form-control" type="text"
-                name="nombre" th:value="${user.nombre}" />
-            </div>
-            <!-- Contrasena -->
-            <div class="form-group">
-              <label for="contrasena">Contrasena:</label> <input id="contrasena_modified_user"
-                class="form-control" type="password" name="contrasena"/>
-                <div>
-                  <p><i> Dejarlo vacío para mantener la contraseña original </i></p>
-                </div>
-            </div>
-            <!-- Correo -->
-            <div class="form-group">
-              <label for="correo">Correo:</label>
-              <input id="correo_modified_user" class="form-control" type="text" name="correo"
-                th:value="${user.correo}" />
-            </div>
-            <input type="submit" value="Enviar" class="btn btn-default" />
-          </form>
-        </div>
-      </div>
+				<!-- Show form to modify selected user -->
+				<div th:if="${user}">
+					<form role="form" id="modify_form" th:action="@{/modify_user}"
+						method="post">
+						<!-- User name -->
+						<div class="form-group">
+							<label for="nombre">Nombre del usuario:</label> <input
+								id="nombre_modified_user" class="form-control" type="text"
+								name="nombre" th:value="${user.nombre}" />
+						</div>
+						<!-- Contrasena -->
+						<div class="form-group">
+							<label for="contrasena">Contrasena:</label> <input
+								id="contrasena_modified_user" class="form-control"
+								type="password" name="contrasena" />
+							<div>
+								<p>
+									<i> Dejarlo vacío para mantener la contraseña original </i>
+								</p>
+							</div>
+						</div>
+						<!-- Correo -->
+						<div class="form-group">
+							<label for="correo">Correo:</label> <input
+								id="correo_modified_user" class="form-control" type="text"
+								name="correo" th:value="${user.correo}" />
+						</div>
+						<input type="submit" value="Enviar" class="btn btn-default" />
+					</form>
+				</div>
+			</div>
 
-    </div>
+		</div>
 
-    <!-- _______________________________________________________________________DELETE EXISTING USER_____________________________________________________________________________________ -->
-    <div th:if="${param.delete} or ${delete}">
-      <h2>Borrar usuario</h2>
-      <div class="container">
-        <!-- Search for user to modify (only showing if user_to_modify not set -->
-        <form th:if="${user == null}" role="form"
-          th:action="@{/search_user_to_delete}" method="post">
-          <div class="form-group">
-            <label for="user">Buscar usuario:</label> <input
-              class="form-control" type="text" name="nombre"
-              placeholder="Enter a user name" /> <input
-              class="btn btn-default" type="submit" value="Buscar" />
-          </div>
-        </form>
+		<!-- _______________________________________________________________________DELETE EXISTING USER_____________________________________________________________________________________ -->
+		<div th:if="${param.delete} or ${delete}">
+			<h2>Borrar usuario</h2>
+			<div class="container">
+				<!-- Search for user to modify (only showing if user_to_modify not set -->
+				<form th:if="${user == null}" role="form"
+					th:action="@{/search_user_to_delete}" method="post">
+					<div class="form-group">
+						<label for="user">Buscar usuario:</label> <input
+							class="form-control" type="text" name="nombre"
+							placeholder="Enter a user name" /> <input
+							class="btn btn-default" type="submit" value="Buscar" />
+					</div>
+				</form>
 
-        <!-- Show list of searched users to modify -->
-        <div th:each="user,it : ${users}">
-          <a class="black" th:href="@{/delete_user(nombre=${user.nombre})}">Borrar
-            <span th:text="${user.nombre}"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- _________________________________________________________________STATUS (add,modify,delete)______________________________________________________________________________ -->
-    <!-- User added successfully -->
-    <div th:if="${addeduser}" class="alert alert-success">
-      <strong th:text="${addeduser.nombre}"></strong> a&#241;adido con
-      &#233;xito!
-    </div>
-    <!-- User modified successfully -->
-    <div th:if="${modifieduser}" class="alert alert-success">
-      <strong th:text="${modifieduser.nombre}"></strong> ha sido
-      modificado con &#233;xito!
-    </div>
-    <!-- User deleted successfully -->
-    <div th:if="${deleteduser}" class="alert alert-success">
-      <strong th:text="${deleteduser}"></strong> ha sido borrado con
-      &#233;xito!
-    </div>
-  </div>
-
-  <div id="footer">
-      <div class="container">
-        <div class="row">
-          <div  class="col-md-12 colorwhite">
-          Made with HTML, CSS, PHP, Bootstrap and other tools... ;-).
-          </div>
-        </div>
-      </div>
-  </div>
+				<!-- Show list of searched users to modify -->
+				<div th:each="user,it : ${users}">
+					<a class="black" th:href="@{/delete_user(nombre=${user.nombre})}">Borrar
+						<span th:text="${user.nombre}"></span>
+					</a>
+				</div>
+			</div>
+		</div>
 
 
-  <script>
-    $(document).ready(function() {
-      $("#add_form").submit(function() {
-        console.log("add submitted!");
-        if ($("#nombre_new_user").val() == '') {
-          alert("Nombre no puede estar vacío!");
-          return false;
-        }
-        if ($("#contrasena_new_user").val() == '') {
-          alert("Contraseña no puede estar vacía!");
-          return false;
-        }
-        if ($("#correo_new_user").val() == '') {
-          alert("Correo no puede estar vacío!");
-          return false;
-        }
-        return true;
-      });
-      $("#modify_form").submit(function() {
-        console.log("modify submitted!");
-        if ($("#nombre_modified_user").val() == '') {
-          alert("Nombre no puede estar vacío!");
-          return false;
-        }
-        if ($("#contrasena_modified_user").val() == '') {
-          alert("Contraseña no puede estar vacía!");
-          return false;
-        }
-        if ($("#correo_modified_user").val() == '') {
-          alert("Correo no puede estar vacío!");
-          return false;
-        }
-        return true;
-      });
-    });
-  </script>
+		<!-- _________________________________________________________________STATUS (add,modify,delete)______________________________________________________________________________ -->
+		<!-- User added successfully -->
+		<div th:if="${addeduser}" class="alert alert-success">
+			<strong th:text="${addeduser.nombre}"></strong> a&#241;adido con
+			&#233;xito!
+		</div>
+		<!-- User modified successfully -->
+		<div th:if="${modifieduser}" class="alert alert-success">
+			<strong th:text="${modifieduser.nombre}"></strong> ha sido modificado
+			con &#233;xito!
+		</div>
+		<!-- User deleted successfully -->
+		<div th:if="${deleteduser}" class="alert alert-success">
+			<strong th:text="${deleteduser}"></strong> ha sido borrado con
+			&#233;xito!
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 colorwhite">Made with HTML, CSS, PHP,
+					Bootstrap and other tools... ;-).</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+		$(document).ready(function() {
+			$("#add_form").submit(function() {
+				console.log("add submitted!");
+				if ($("#nombre_new_user").val() == '') {
+					alert("Nombre no puede estar vacío!");
+					return false;
+				}
+				if ($("#contrasena_new_user").val() == '') {
+					alert("Contraseña no puede estar vacía!");
+					return false;
+				}
+				if ($("#correo_new_user").val() == '') {
+					alert("Correo no puede estar vacío!");
+					return false;
+				}
+				return true;
+			});
+			$("#modify_form").submit(function() {
+				console.log("modify submitted!");
+				if ($("#nombre_modified_user").val() == '') {
+					alert("Nombre no puede estar vacío!");
+					return false;
+				}
+				if ($("#contrasena_modified_user").val() == '') {
+					alert("Contraseña no puede estar vacía!");
+					return false;
+				}
+				if ($("#correo_modified_user").val() == '') {
+					alert("Correo no puede estar vacío!");
+					return false;
+				}
+				return true;
+			});
+		});
+	</script>
 </body>
 </html>

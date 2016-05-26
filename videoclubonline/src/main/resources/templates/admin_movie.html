@@ -11,23 +11,25 @@
 <title>Administrar pel&#237;culas</title>
 </head>
 <body>
-	
+
 	<div id="header">
-    	<div class="container">
-    		<div class="row">
-    			<div  class="col-md-4">
-    				<a href="index.html"><h1>Videoclub</h1>
-    				<p>Disfrutar películas online</p></a>
-    			</div>
-    			<div  class="col-md-offset-3 col-md-4">
-    				<h4 class="colorwhite">Connectado con la cuenta : <span th:text="${user.nombre}"></span></h4>
-    				<a th:href="@{/logout}">Cerrar Sesión</a>
-	   			</div>
-    		</div>
-    	</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<a href="index.html"><h1>Videoclub</h1>
+						<p>Disfrutar películas online</p></a>
+				</div>
+				<div class="col-md-offset-3 col-md-4">
+					<h4 class="colorwhite">
+						Connectado con la cuenta : <span th:text="${username}"></span>
+					</h4>
+					<a th:href="@{/logout}">Cerrar Sesión</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
-<!--
+	<!--
 	<nav class="navbar navbar-default navbarColor">
 		<div class="container-fluid col-md-offset-2 col-md-8">
 			<ul>
@@ -46,26 +48,31 @@
 		<h1>Administraci&#243;n de pel&#237;culas</h1>
 	</div>
 
-  	<div class="col-md-offset-2 col-md-8"> 
-        <div class="btn-group btn-group-justified" role="group"> 
-            <div class="btn-group"  role="group">
-              <button type="submit" class="btn btn-success" id="ajoutPark">
-                  <span th:href="@{/admin_movie(add)}" class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir nueva pel&#237;cula
-                  </button>                                                                        
-            </div>
-            <div class="btn-group"  role="group">
-              <button type="button" class="btn btn-info" id="modifPark">
-                  <span th:href="@{/admin_movie(modify)}" class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar pel&#237;cula
-                </button>
-            </div>
-            <div class="btn-group"  role="group">
-                <button type="submit" class="btn btn-danger" id="supprPark">
-                  <span th:href="@{/admin_movie(delete)}" class="glyphicon glyphicon-remove"></span>&nbsp;Borrar pel&#237;cula
-                </button>
-            </div>
-        </div>
-    </div>
-    <br/>
+	<div class="col-md-offset-2 col-md-8">
+		<div class="btn-group btn-group-justified" role="group">
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn btn-success" id="ajoutPark">
+					<span th:href="@{/admin_movie(add)}" class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir
+					nueva pel&#237;cula
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-info" id="modifPark">
+					<span th:href="@{/admin_movie(modify)}"
+						class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar
+					pel&#237;cula
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn btn-danger" id="supprPark">
+					<span th:href="@{/admin_movie(delete)}"
+						class="glyphicon glyphicon-remove"></span>&nbsp;Borrar
+					pel&#237;cula
+				</button>
+			</div>
+		</div>
+	</div>
+	<br />
 
 	<div class="container">
 		<!-- ___________________________________________________________ADD NEW MOVIE_____________________________________________________________________________________ -->
@@ -245,13 +252,12 @@
 	</div>
 
 	<div id="footer">
-	    <div class="container">
-	    	<div class="row">
-	    		<div  class="col-md-12 colorwhite">
-					Made with HTML, CSS, PHP, Bootstrap and other tools... ;-).
-	    		</div>
-	    	</div>
-	    </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 colorwhite">Made with HTML, CSS, PHP,
+					Bootstrap and other tools... ;-).</div>
+			</div>
+		</div>
 	</div>
 
 

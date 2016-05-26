@@ -75,25 +75,31 @@ public class VideoclubController {
 
 	@RequestMapping("/admin_user")
 	public ModelAndView admin_user() {
-		
-		return new ModelAndView("admin_user");
+		// get authenticated user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+
+		return new ModelAndView("admin_user").addObject("username", username);
 	}
 
 	@RequestMapping("/admin_movie")
 	public ModelAndView admin_movie() {
-		
-		return new ModelAndView("admin_movie");
+		// get authenticated user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+
+		return new ModelAndView("admin_movie").addObject("username", username);
 	}
 
 	@RequestMapping("/movie")
 	public ModelAndView movie() {
-		
+
 		return new ModelAndView("movie");
 	}
-	
+
 	@RequestMapping("/user")
 	public ModelAndView user() {
-		
+
 		return new ModelAndView("user");
 	}
 
@@ -108,7 +114,7 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("addedmovie", movie);
 	}
-	
+
 	@RequestMapping("/new_user")
 	public ModelAndView new_user(@RequestParam String nombre, @RequestParam String contrasena,
 			@RequestParam String correo) {
@@ -128,7 +134,7 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("modify", "").addObject("movies", movies);
 	}
-	
+
 	@RequestMapping("/search_user_to_modify")
 	public ModelAndView search_user_to_modify(@RequestParam String nombre) {
 		// Searching for user...
@@ -144,7 +150,7 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("modify", "").addObject("movie", movie);
 	}
-	
+
 	@RequestMapping("/user_to_modify")
 	public ModelAndView user_to_modify(@RequestParam String user_to_modify) {
 		// return data of the user to be modified
@@ -163,7 +169,7 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("modifiedmovie", movie);
 	}
-	
+
 	@RequestMapping("/modify_user")
 	public ModelAndView modify_user(@RequestParam String nombre, @RequestParam String contrasena,
 			@RequestParam String correo) {
@@ -182,7 +188,7 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("delete", "").addObject("movies", movies);
 	}
-	
+
 	@RequestMapping("/search_user_to_delete")
 	public ModelAndView search_user_to_delete(@RequestParam String nombre) {
 		// Searching for user...
@@ -198,7 +204,7 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_movie").addObject("deletedmovie", nombre);
 	}
-	
+
 	@RequestMapping("/delete_user")
 	public ModelAndView delete_user(@RequestParam String nombre) {
 
