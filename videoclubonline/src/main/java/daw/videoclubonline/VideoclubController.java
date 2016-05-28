@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class VideoclubController {
 		return new ModelAndView("login");
 	}
 
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/")
 	public ModelAndView home() {
 		// get authenticated user
@@ -40,6 +42,7 @@ public class VideoclubController {
 		return new ModelAndView("index").addObject("user", user);
 	}
 
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/search")
 	public ModelAndView search(@RequestParam String nombre) {
 		List<Movie> movies = movieRepository.findByNombreContaining(nombre);
@@ -65,6 +68,7 @@ public class VideoclubController {
 		return new ModelAndView("movies").addObject("movies", movies);
 	}
 
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/watch")
 	public ModelAndView watch(@RequestParam String nombre) {
 		// get movie with passed id
@@ -73,6 +77,7 @@ public class VideoclubController {
 		return new ModelAndView("watch").addObject("movie", movie);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/admin_user")
 	public ModelAndView admin_user() {
 		// get authenticated user
@@ -82,6 +87,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_user").addObject("username", username);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/admin_movie")
 	public ModelAndView admin_movie() {
 		// get authenticated user
@@ -91,18 +97,21 @@ public class VideoclubController {
 		return new ModelAndView("admin_movie").addObject("username", username);
 	}
 
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/movie")
 	public ModelAndView movie() {
 
 		return new ModelAndView("movie");
 	}
 
+	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/user")
 	public ModelAndView user() {
 
 		return new ModelAndView("user");
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/new_movie")
 	public ModelAndView new_movie(@RequestParam String nombre, @RequestParam String url,
 			@RequestParam String descripcion, @RequestParam String ano, @RequestParam String director,
@@ -115,6 +124,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_movie").addObject("addedmovie", movie);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/new_user")
 	public ModelAndView new_user(@RequestParam String nombre, @RequestParam String contrasena,
 			@RequestParam String correo) {
@@ -127,6 +137,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_user").addObject("addeduser", user);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/search_movie_to_modify")
 	public ModelAndView search_movie_to_modify(@RequestParam String nombre) {
 		// Searching for movie...
@@ -135,6 +146,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_movie").addObject("modify", "").addObject("movies", movies);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/search_user_to_modify")
 	public ModelAndView search_user_to_modify(@RequestParam String nombre) {
 		// Searching for user...
@@ -143,6 +155,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_user").addObject("modify", "").addObject("users", users);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/movie_to_modify")
 	public ModelAndView movie_to_modify(@RequestParam String movie_to_modify) {
 		// return data of the movie to be modified
@@ -151,6 +164,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_movie").addObject("modify", "").addObject("movie", movie);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/user_to_modify")
 	public ModelAndView user_to_modify(@RequestParam String user_to_modify) {
 		// return data of the user to be modified
@@ -159,6 +173,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_user").addObject("modify", "").addObject("user", user);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/modify_movie")
 	public ModelAndView modify_movie(@RequestParam String nombre, @RequestParam String url,
 			@RequestParam String descripcion, String ano, @RequestParam String director, @RequestParam String actores,
@@ -170,6 +185,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_movie").addObject("modifiedmovie", movie);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/modify_user")
 	public ModelAndView modify_user(@RequestParam String nombre, @RequestParam String contrasena,
 			@RequestParam String correo) {
@@ -181,6 +197,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_user").addObject("modifieduser", user);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/search_movie_to_delete")
 	public ModelAndView search_movie_to_delete(@RequestParam String nombre) {
 		// Searching for movie...
@@ -189,6 +206,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_movie").addObject("delete", "").addObject("movies", movies);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/search_user_to_delete")
 	public ModelAndView search_user_to_delete(@RequestParam String nombre) {
 		// Searching for user...
@@ -197,6 +215,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_user").addObject("delete", "").addObject("users", users);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/delete_movie")
 	public ModelAndView delete_movie(@RequestParam String nombre) {
 
@@ -205,6 +224,7 @@ public class VideoclubController {
 		return new ModelAndView("admin_movie").addObject("deletedmovie", nombre);
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping("/delete_user")
 	public ModelAndView delete_user(@RequestParam String nombre) {
 

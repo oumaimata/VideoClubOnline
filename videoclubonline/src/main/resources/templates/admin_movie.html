@@ -13,7 +13,22 @@
 <body>
 
 	<div id="header">
-<<<<<<< Updated upstream
+		<<<<<<< Updated upstream
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<a href="@{/}"><h1>Videoclub</h1>
+						<p>Disfrutar películas online</p></a>
+				</div>
+				<div class="col-md-offset-3 col-md-4">
+					<h4 class="colorwhite">
+						Connectado con la cuenta : <span th:text="${username}"></span>
+					</h4>
+					<a th:href="@{/logout}">Cerrar Sesión</a>
+				</div>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
@@ -28,19 +43,6 @@
 				</div>
 			</div>
 		</div>
-
-    	<div class="container">
-    		<div class="row">
-    			<div  class="col-md-4">
-    				<a href="index.html"><h1>Videoclub</h1>
-    				<p>Disfrutar películas online</p></a>
-    			</div>
-    			<div  class="col-md-offset-3 col-md-4">
-    				<h4 class="colorwhite">Connectado con la cuenta : <span th:text="${username}"></span></h4>
-    				<a th:href="@{/logout}">Cerrar Sesión</a>
-	   			</div>
-    		</div>
-    	</div>
 
 	</div>
 
@@ -66,20 +68,20 @@
 	<div class="col-md-offset-2 col-md-8">
 		<div class="btn-group btn-group-justified" role="group">
 			<div class="btn-group" role="group">
-				<a th:href="@{/admin_movie(add)}" class="btn btn-success">
-					<span class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir
-					nueva pel&#237;cula
-				</a>
-			</div>
-			<div class="btn-group" role="group">
-				<a th:href="@{/admin_movie(modify)}" class="btn btn-info">
-					<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar
+				<a th:href="@{/admin_movie(add)}" class="btn btn-success"> <span
+					class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir nueva
 					pel&#237;cula
 				</a>
 			</div>
 			<div class="btn-group" role="group">
-				<a th:href="@{/admin_movie(delete)}" class="btn btn-danger">
-					<span class="glyphicon glyphicon-remove"></span>&nbsp;Borrar
+				<a th:href="@{/admin_movie(modify)}" class="btn btn-info"> <span
+					class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar
+					pel&#237;cula
+				</a>
+			</div>
+			<div class="btn-group" role="group">
+				<a th:href="@{/admin_movie(delete)}" class="btn btn-danger"> <span
+					class="glyphicon glyphicon-remove"></span>&nbsp;Borrar
 					pel&#237;cula
 				</a>
 			</div>
