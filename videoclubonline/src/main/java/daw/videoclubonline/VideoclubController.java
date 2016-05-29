@@ -256,7 +256,11 @@ public class VideoclubController {
 		// Searching for best movies...
 		List<Movie> movies = movieRepository.findTop10ByOrderByValoracionDesc();
 
-		return new ModelAndView("movie").addObject("movies", movies);
+		// get authenticated user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+
+		return new ModelAndView("movie").addObject("movies", movies).addObject("username", username);
 	}
 
 }
