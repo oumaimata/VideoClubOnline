@@ -260,7 +260,7 @@ public class VideoclubController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String username = authentication.getName();
 
-		return new ModelAndView("movie").addObject("movies", movies).addObject("username", username);
+		return new ModelAndView("gallery").addObject("movies", movies).addObject("username", username);
 	}
 
 }
