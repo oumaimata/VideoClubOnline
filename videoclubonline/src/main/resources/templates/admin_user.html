@@ -16,7 +16,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="@{/}"><h1>Videoclub</h1>
+					<a th:href="@{/}"><h1>Videoclub</h1>
 						<p>Disfrutar películas online</p></a>
 				</div>
 				<div class="col-md-offset-3 col-md-4">
@@ -24,8 +24,8 @@
 						Connectado con la cuenta : <span th:text="${username}"></span>
 					</h4>
 					<!--<a th:href="@{/logout}">Cerrar Sesión</a> -->
-					<form role="form" th:action="@{/logout}" method="post">
-						<input type="submit" value="Cerrar Sesión" />
+					<form id="logout_form" role="form" th:action="@{/logout}" method="post">
+						<a style="cursor:pointer;" onclick="document.getElementById('logout_form').submit();">Cerrar Sesión</a>
 					</form>
 				</div>
 			</div>

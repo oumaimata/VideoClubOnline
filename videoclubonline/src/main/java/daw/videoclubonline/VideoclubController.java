@@ -64,8 +64,12 @@ public class VideoclubController {
 		// Store changes in db
 		movieRepository.save(movies);
 
+		// get authenticated user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+
 		// return movies.html as page and the found movies as object
-		return new ModelAndView("movies").addObject("movies", movies);
+		return new ModelAndView("movies").addObject("movies", movies).addObject("username", username);
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
@@ -100,8 +104,11 @@ public class VideoclubController {
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/movie")
 	public ModelAndView movie() {
+		// get authenticated user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
 
-		return new ModelAndView("movie");
+		return new ModelAndView("movie").addObject("username", username);
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
