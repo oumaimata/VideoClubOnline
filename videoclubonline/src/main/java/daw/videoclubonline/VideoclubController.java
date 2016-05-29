@@ -249,14 +249,14 @@ public class VideoclubController {
 
 		return new ModelAndView("admin_user").addObject("deleteduser", nombre);
 	}
-	
+
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/gallery")
 	public ModelAndView gallery() {
 		// Searching for best movies...
-		List<Movie> movies = movieRepository.findByNombreOrderByValoracionDesc();
+		List<Movie> movies = movieRepository.findTop10ByOrderByValoracionDesc();
 
-		return new ModelAndView("movie").addObject("movies", movies.subList(0, 9));
+		return new ModelAndView("movie").addObject("movies", movies);
 	}
 
 }

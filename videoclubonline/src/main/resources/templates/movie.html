@@ -55,7 +55,7 @@
 			<!-- loop through the movies -->
 			<tr th:each="movie,it : ${movies}" class="table-row-movie">
 				<td><a class="btn btn-default"
-					th:href="@{/gallery(nombre=${movie.nombre})}"></a></td>
+					th:href="@{/watch(nombre=${movie.nombre})}">Ver</a></td>
 				<td><img class="table-image" th:src="${movie.portada}"></img></td>
 				<td th:text="${movie.nombre}"></td>
 				<td><div class="table-description"
