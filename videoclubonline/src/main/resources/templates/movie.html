@@ -38,6 +38,36 @@
 		<h1>Galley de películas</h1>
 	</div>
 
+<div class="container-fluid">
+		<table id="movie-table" class="table table-striped">
+			<tr>
+				<th></th>
+				<!-- for url -->
+				<th></th>
+				<!-- for "portada" -->
+				<th>Nombre</th>
+				<th>Descripci&#243;n</th>
+				<th>A&#241;o</th>
+				<th>Director</th>
+				<th>Actores</th>
+				<th>Valoraci&#243;n</th>
+			</tr>
+			<!-- loop through the movies -->
+			<tr th:each="movie,it : ${movies}" class="table-row-movie">
+				<td><a class="btn btn-default"
+					th:href="@{/gallery(nombre=${movie.nombre})}"></a></td>
+				<td><img class="table-image" th:src="${movie.portada}"></img></td>
+				<td th:text="${movie.nombre}"></td>
+				<td><div class="table-description"
+						th:text="${movie.descripcion}"></div></td>
+				<td th:text="${movie.ano}"></td>
+				<td th:text="${movie.director}"></td>
+				<td th:text="${movie.actores}"></td>
+				<td th:text="${movie.valoracion}"></td>
+			</tr>
+		</table>
+	</div>
+
 
 	<div id="footer">
 		<div class="container">

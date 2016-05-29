@@ -25,6 +25,8 @@ public interface MovieRepository extends CrudRepository<Movie, String> {
 	 * @return a list of movies that match the searched String
 	 */
 	List<Movie> findByNombreContaining(String movie);
+	
+	List<Movie> findByNombreOrderByValoracionDesc();
 
 	/**
 	 * To insert and modify a movie
