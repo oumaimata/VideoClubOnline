@@ -24,9 +24,11 @@
 						Connectado con la cuenta : <span th:text="${username}"></span>
 					</h4>
 					<!--<a th:href="@{/logout}">Cerrar Sesión</a> -->
+					<a>
 					<form role="form" th:action="@{/logout}" method="post">
-						<input type="submit" value="Cerrar Sesión" />
+						<input  style="background: #4a494d" type="submit" value="Cerrar Sesión" />
 					</form>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -118,8 +120,8 @@
           </thead>
           <tbody> 
                 <tr>
-                    <td th:value="${user.correo}"><center></center></td>
-                    <td th:value="${user.nombre}"><center></center></td>
+                    <td><center><span th:text="${username}"></span></center></td>
+                    <td><center><span th:text="${user.correo}"></span></center></td>
                   </tr>
         </tbody>
       </table>          
