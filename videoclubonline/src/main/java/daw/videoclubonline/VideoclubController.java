@@ -75,10 +75,13 @@ public class VideoclubController {
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 	@RequestMapping("/watch")
 	public ModelAndView watch(@RequestParam String nombre) {
+		// get authenticated user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
 		// get movie with passed id
 		Movie movie = movieRepository.findByNombre(nombre);
 		// return watch.html as page and the corresponding movie as object
-		return new ModelAndView("watch").addObject("movie", movie);
+		return new ModelAndView("watch").addObject("movie", movie).addObject("username", username);
 	}
 
 	@Secured({ "ROLE_ADMIN" })
@@ -112,10 +115,17 @@ public class VideoclubController {
 	}
 
 	@Secured({ "ROLE_USER", "ROLE_ADMIN" })
-	@RequestMapping("/user")
-	public ModelAndView user() {
+	@RequestMapping("/profile")
+	public ModelAndView profile() {
 
-		return new ModelAndView("user");
+		// get authenticated user
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+
+		// find user with username
+		User user = userRepository.findByNombre(username);
+
+		return new ModelAndView("profile").addObject("user", user);
 	}
 
 	@Secured({ "ROLE_ADMIN" })

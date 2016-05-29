@@ -16,19 +16,20 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="@{/}"><h1>Videoclub</h1>
-						<p>Disfrutar películas online</p></a>
+					<a th:href="@{/}"><h1>Videoclub</h1>
+						<p>Disfrutar de películas online</p></a>
 				</div>
 				<div class="col-md-offset-3 col-md-4">
 					<h4 class="colorwhite">
-						Connectado con la cuenta : <span th:text="${username}"></span>
+						Conectado con la cuenta : <span th:text="${user.nombre}"></span>
 					</h4>
 					<!--<a th:href="@{/logout}">Cerrar Sesión</a> -->
-					<a>
-					<form role="form" th:action="@{/logout}" method="post">
-						<input  style="background: #4a494d" type="submit" value="Cerrar Sesión" />
+					<form id="logout_form" role="form" th:action="@{/logout}"
+						method="post">
+						<a style="cursor: pointer;"
+							onclick="document.getElementById('logout_form').submit();">Cerrar
+							Sesión</a>
 					</form>
-					</a>
 				</div>
 			</div>
 		</div>
@@ -50,12 +51,7 @@
 -->
 
 
-	<div class="page-header">
-		<h1>Profile</h1>
-	</div>
-
-
-<!--
+	<!--
 	<div class="container">
 
 		<div th:if="${param.modify} or ${modify}">
@@ -107,24 +103,25 @@
 		</div>
 
 -->
-	<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
-      <table class="table table-bordered table-striped">
-          <caption>
-            <h4 style="text-align: center">Profile</h4>
-          </caption>
-          <thead>
-            <tr>
-                <th style="text-align: center">Usuario</th>
-                <th style="text-align: center">Correo</th>
-            </tr>
-          </thead>
-          <tbody> 
-                <tr>
-                    <td><center><span th:text="${username}"></span></center></td>
-                    <td><center><span th:text="${user.correo}"></span></center></td>
-                  </tr>
-        </tbody>
-      </table>          
+	<section style="margin-top: 15px;"
+		class="col-md-offset-2 col-md-8 table-responsive">
+		<table class="table table-bordered table-striped">
+			<caption>
+				<h2 style="text-align: center">Perfil</h2>
+			</caption>
+			<thead>
+				<tr>
+					<th style="text-align: center">Usuario</th>
+					<th style="text-align: center">Correo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><center th:text="${user.nombre}"></center></td>
+					<td><center th:text="${user.correo}"></center></td>
+				</tr>
+			</tbody>
+		</table>
 	</section>
 
 
