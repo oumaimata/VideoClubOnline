@@ -49,72 +49,18 @@
 
 
 	<div class="page-header">
-		<h1>Administraci&#243;n de usurios</h1>
+		<h1>Profile</h1>
 	</div>
 
-	<div class="col-md-offset-2 col-md-8">
-		<div class="btn-group btn-group-justified" role="group">
-			<div class="btn-group" role="group">
-				<a th:href="@{/admin_user(add)}" class="btn btn-success"> <span
-					class="glyphicon glyphicon-ok"></span>&nbsp;A&#241;adir nuevo
-					usuario
-				</a>
-			</div>
-			<div class="btn-group" role="group">
-				<a th:href="@{/admin_user(modify)}" class="btn btn-info"> <span
-					class="glyphicon glyphicon-pencil"></span>&nbsp;Modificar usuario
-				</a>
-			</div>
-			<div class="btn-group" role="group">
-				<a th:href="@{/admin_user(delete)}" class="btn btn-danger"> <span
-					class="glyphicon glyphicon-remove"></span>&nbsp;Borrar usuario
-				</a>
-			</div>
-		</div>
-	</div>
-	<br />
 
+<!--
 	<div class="container">
-		<!-- ___________________________________________________________ADD NEW USER_____________________________________________________________________________________ -->
-		<div th:if="${param.add}">
-			<h2>A&#241;adir nuevo usuario</h2>
 
-			<form role="form" id="add_form" th:action="@{/new_user}"
-				method="post">
-				<!-- User name -->
-				<div class="form-group">
-					<label for="nombre">Nombre de usuario:</label> <input
-						id="nombre_new_user" class="form-control" type="text"
-						name="nombre" />
-				</div>
-				<!-- Contrasena -->
-				<div class="form-group">
-					<label for="contrasena">Contraseña</label> <input
-						id="contrasena_new_user" class="form-control" type="password"
-						name="contrasena" />
-				</div>
-				<!-- Confirmar contrasena-->
-				<div class="form-group">
-					<label for="contrasena2">Confirmar contraseña</label> <input
-						id="contrasena2_new_user" class="form-control" type="password"
-						name="contrasena2" onkeyup="checkPassAdd(); return false;" />
-					<span id="confirmMessage" class="confirmMessage"></span>
-				</div>
-				<!-- Correo -->
-				<div class="form-group">
-					<label for="correo">Correo:</label> <input id="correo_new_user"
-						class="form-control" type="text" name="correo" />
-				</div>
-				<input type="submit" value="Enviar" class="btn btn-default" />
-			</form>
-		</div>
-
-		<!-- ______________________________________________________________MODIFY EXISTING USER_____________________________________________________________________________________ -->
 		<div th:if="${param.modify} or ${modify}">
 			<h2>Modificar usuario</h2>
 
 			<div class="container">
-				<!-- Search for video to modify (only showing if movie_to_modify not set -->
+				
 				<form th:if="${user == null}" role="form"
 					th:action="@{/search_user_to_modify}" method="post">
 					<div class="form-group">
@@ -125,7 +71,7 @@
 					</div>
 				</form>
 
-				<!-- Show list of searched videos to modify -->
+				<
 				<div th:each="user,it : ${users}">
 					<a class="black"
 						th:href="@{/user_to_modify(user_to_modify=${user.nombre})}">Modificar
@@ -133,34 +79,18 @@
 					</a>
 				</div>
 
-				<!-- Show form to modify selected user -->
+				
 				<div th:if="${user}">
 					<form role="form" id="modify_form" th:action="@{/modify_user}"
 						method="post">
-						<!-- User name -->
+						
 						<div class="form-group">
 							<label for="nombre">Nombre del usuario:</label> <input
 								id="nombre_modified_user" class="form-control" type="text"
 								name="nombre" th:value="${user.nombre}" />
 						</div>
-						<!-- Contrasena -->
-						<div class="form-group">
-							<label for="contrasena">Contrasena:</label> <input
-								id="contrasena_modified_user" class="form-control"
-								type="password" name="contrasena" />
-							<div>
-								<p>
-									<i> Dejarlo vacío para mantener la contraseña original </i>
-								</p>
-							</div>
-						</div>
-						<!-- Confirmar contrasena-->
-						<div class="form-group">
-							<label for="contrasena2">Confirmar contraseña</label> <input id="contrasena2_modified_user" class="form-control" type="password" name="contrasena2" onkeyup="checkPassMod(); return false;" />
-							<span id="confirmMessage" class="confirmMessage"></span>
-						</div>
 						
-						<!-- Correo -->
+						
 						<div class="form-group">
 							<label for="correo">Correo:</label> <input
 								id="correo_modified_user" class="form-control" type="text"
@@ -171,141 +101,31 @@
 				</div>
 			</div>
 
+
 		</div>
 
-		<!-- _______________________________________________________________________DELETE EXISTING USER_____________________________________________________________________________________ -->
-		<div th:if="${param.delete} or ${delete}">
-			<h2>Borrar usuario</h2>
-			<div class="container">
-				<!-- Search for user to modify (only showing if user_to_modify not set -->
-				<form th:if="${user == null}" role="form"
-					th:action="@{/search_user_to_delete}" method="post">
-					<div class="form-group">
-						<label for="user">Buscar usuario:</label> <input
-							class="form-control" type="text" name="nombre"
-							placeholder="Enter a user name" /> <input
-							class="btn btn-default" type="submit" value="Buscar" />
-					</div>
-				</form>
-
-				<!-- Show list of searched users to modify -->
-				<div th:each="user,it : ${users}">
-					<a class="black" th:href="@{/delete_user(nombre=${user.nombre})}">Borrar
-						<span th:text="${user.nombre}"></span>
-					</a>
-				</div>
-			</div>
-		</div>
+-->
+	<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+      <table class="table table-bordered table-striped">
+          <caption>
+            <h4 style="text-align: center">Profile</h4>
+          </caption>
+          <thead>
+            <tr>
+                <th style="text-align: center">Usuario</th>
+                <th style="text-align: center">Correo</th>
+            </tr>
+          </thead>
+          <tbody> 
+                <tr>
+                    <td th:value="${user.correo}"><center></center></td>
+                    <td th:value="${user.nombre}"><center></center></td>
+                  </tr>
+        </tbody>
+      </table>          
+	</section>
 
 
-		<!-- _________________________________________________________________STATUS (add,modify,delete)______________________________________________________________________________ -->
-		<!-- User added successfully -->
-		<div th:if="${addeduser}" class="alert alert-success">
-			<strong th:text="${addeduser.nombre}"></strong> a&#241;adido con
-			&#233;xito!
-		</div>
-		<!-- User modified successfully -->
-		<div th:if="${modifieduser}" class="alert alert-success">
-			<strong th:text="${modifieduser.nombre}"></strong> ha sido modificado
-			con &#233;xito!
-		</div>
-		<!-- User deleted successfully -->
-		<div th:if="${deleteduser}" class="alert alert-success">
-			<strong th:text="${deleteduser}"></strong> ha sido borrado con
-			&#233;xito!
-		</div>
-	</div>
-
-	<div id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 colorwhite">Made with HTML, CSS,
-					Bootstrap and other tools... ;-).</div>
-			</div>
-		</div>
-	</div>
-
-
-	<script> 
-		function checkPassAdd()
-		{
-		    var contrasena = document.getElementById('contrasena_new_user');
-		    var contrasena2 = document.getElementById('contrasena2_new_user');
-
-		    var message = document.getElementById('confirmMessage');
-
-		    var goodColor = "#66cc66";
-		    var badColor = "#ff6666";
-		    
-		    if(contrasena.value == contrasena2.value){
-		       
-		        contrasena2.style.backgroundColor = goodColor;
-		        message.style.color = goodColor;
-		        message.innerHTML = "Contraseña correcta!"
-		    }else{
-		        
-		        contrasena2.style.backgroundColor = badColor;
-		        message.style.color = badColor;
-		        message.innerHTML = "Contraseña incorrecta!"
-		    }
-		} 	
-		function checkPassMod()
-		{
-		    var contrasena = document.getElementById('contrasena_modified_user');
-		    var contrasena2 = document.getElementById('contrasena2_modified_user');
-
-		    var message = document.getElementById('confirmMessage');
-
-		    var goodColor = "#66cc66";
-		    var badColor = "#ff6666";
-		    
-		    if(contrasena.value == contrasena2.value){
-		       
-		        contrasena2.style.backgroundColor = goodColor;
-		        message.style.color = goodColor;
-		        message.innerHTML = "Contraseña correcta!"
-		    }else{
-		        
-		        contrasena2.style.backgroundColor = badColor;
-		        message.style.color = badColor;
-		        message.innerHTML = "Contraseña incorrecta!"
-		    }
-		} 	
-		$(document).ready(function() {
-			$("#add_form").submit(function() {
-				console.log("add submitted!");
-				if ($("#nombre_new_user").val() == '') {
-					alert("Nombre no puede estar vacío!");
-					return false;
-				}
-				if ($("#contrasena_new_user").val() == '') {
-					alert("Contraseña no puede estar vacía!");
-					return false;
-				}
-				if ($("#correo_new_user").val() == '') {
-					alert("Correo no puede estar vacío!");
-					return false;
-				}
-				return true;
-			});
-			$("#modify_form").submit(function() {
-				console.log("modify submitted!");
-				if ($("#nombre_modified_user").val() == '') {
-					alert("Nombre no puede estar vacío!");
-					return false;
-				}
-				if ($("#contrasena_modified_user").val() == '') {
-					alert("Contraseña no puede estar vacía!");
-					return false;
-				}
-				if ($("#correo_modified_user").val() == '') {
-					alert("Correo no puede estar vacío!");
-					return false;
-				}
-				return true;
-			});
-		});
-	</script>
 
 </body>
 </html>
