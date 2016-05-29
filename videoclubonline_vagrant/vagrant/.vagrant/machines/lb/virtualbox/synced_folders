@@ -1,0 +1,1 @@
+{"virtualbox":{"/opt":{"guestpath":"/opt","hostpath":"/home/felix/videoclubonline_vagrant/data","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/felix/videoclubonline_vagrant/vagrant","disabled":false,"__vagrantfile":true}}}

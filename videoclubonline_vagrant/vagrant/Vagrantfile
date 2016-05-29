@@ -1,0 +1,71 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+# script para las maquinas web
+$script_web = <<SCRIPT
+cd /opt
+java -jar vco.jar &
+SCRIPT
+# script para la maquina de base de datos
+$script_db = <<SCRIPT
+cd /opt/db
+mysql -u root --password=root < create_tables.sql
+mysql -u root --password=root mydb < insert_statements.sql
+SCRIPT
+# script para el balanceador de carga
+$script_lb = <<SCRIPT
+sudo sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/haproxy
+sudo cp /opt/haproxy.cfg /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
+SCRIPT
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.define "db" do |db|
+    db.vm.box = "atorre/daw"
+    db.vm.network "private_network", ip: "192.168.33.33"
+    db.vm.provider "virtualbox" do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+    end
+    db.vm.provision :chef_solo do |chef|
+      chef.version = "12.10.40"
+      chef.add_recipe "mysql::server"
+      chef.json = {
+	:mysql	=> {
+		:bind_ip => "192.168.33.33",
+		:server_root_password => 'root',
+        	:allow_remote_root => true
+		}
+      }
+    end
+    db.vm.provision "shell",
+       inline: $script_db
+  end
+
+  config.vm.define "web1" do |web|
+    web.vm.box = "atorre/daw"
+    web.vm.network "private_network", ip: "192.168.33.31"
+    web.vm.provision "shell",
+       inline: $script_web
+  end
+
+  config.vm.define "web2" do |web|
+    web.vm.box = "atorre/daw"
+    web.vm.network "private_network", ip: "192.168.33.32"
+    web.vm.provision "shell",
+       inline: $script_web
+  end
+
+  config.vm.define "lb" do |lb|
+    lb.vm.box = "atorre/daw"
+    lb.vm.network "private_network", ip: "192.168.33.30"
+    lb.vm.provision "shell",
+       inline: $script_lb
+  end
+  
+  config.vm.synced_folder "../data", "/opt"
+
+end
