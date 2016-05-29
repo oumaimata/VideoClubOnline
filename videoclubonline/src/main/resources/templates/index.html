@@ -13,14 +13,17 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="index.html"><h1>Videoclub</h1>
+					<a href="@{/index}"><h1>Videoclub</h1>
 						<p>Disfrutar películas online</p></a>
 				</div>
 				<div class="col-md-offset-3 col-md-4">
 					<h4 class="colorwhite">
 						Connectado con la cuenta : <span th:text="${user.nombre}"></span>
 					</h4>
-					<a th:href="@{/logout}">Cerrar Sesión</a>
+					<!--<a th:href="@{/logout}">Cerrar Sesión</a> -->
+					<form role="form" th:action="@{/logout}" method="post">
+						<input type="submit" value="Cerrar Sesión" />
+					</form>
 				</div>
 			</div>
 		</div>
